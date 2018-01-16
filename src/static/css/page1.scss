@@ -1,27 +1,22 @@
-  $red : #0c9;
-  .head{
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    width: 18.75rem;
-    height:2.2rem;
-    line-height:2.2rem;
-    text-align: center;
-    background: $red;
-    .tab-a{
-      padding: .2rem .45rem;
-      font-size: .7rem;
-      color: #ffffff;
-      border-radius: .2rem;
-    }
-    .active{
-      color: blue;
-      background: #ffffff;
-    }
-    .cssimg{
-        height: 2.5rem;
-        width: 2rem;
-        background: url(../img/web.jpg) no-repeat center center;
-        background-size: 2rem 2.5rem;
-    }
+$color : #0c9;
+.head{
+  line-height:2.2rem;
+  text-align: center;
+  background: $color;
+  .tab-a{
+    padding: .2rem .45rem;
+    font-size: .7rem;
+    color: #ffffff;
+    border-radius: .2rem;
   }
+  .active{
+    color: $color;
+    background: #ffffff;
+  }
+  .cssimg{
+      height: 2rem;
+      width: 4.35rem;
+      background: url(../img/web.jpg) no-repeat center center;
+      background-size: 4.35rem 2rem;
+  }
+}

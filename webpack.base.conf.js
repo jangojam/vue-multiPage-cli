@@ -26,7 +26,7 @@ function getEntry(globPath) {
         htmlPlugin.push(new HtmlWebpackPlugin({
             filename: 'html/' + name + '.html',
             template: 'src/index.html',
-            chunks: [name],
+            chunks: [name, 'vue'],
             hash: true
         }))
         console.log(filePath)
@@ -35,7 +35,9 @@ function getEntry(globPath) {
 
 
 module.exports = {
-    entry: Object.assign(getEntry('src/static/js/*.js')),
+    entry: Object.assign(getEntry('src/static/js/*.js'),{
+        vue: 'vue'
+    }),
     output:{
         path: path.resolve(__dirname, 'dist'),
         filename: 'static/js/[name].js',
@@ -45,7 +47,7 @@ module.exports = {
     },
     module:{
         rules: [
-        //     // 抽离css(如果要抽离的话)
+        //     // 抽离css(js里面的css)
         //     {
         //         test: /\.css$/,
         //         use: ExtractTextPlugin.extract({
@@ -153,6 +155,14 @@ module.exports = {
                     }
                 }
             },
+            // 抽离css（vue里面的css）
+            // {
+            //     test: /\.vue$/,
+            //     loader: 'vue-loader',
+            //     options: {
+            //         extractCSS: true
+            //     }
+            // },
             {
                 test:/\.(jsx|js)$/,
                 use:{
@@ -163,28 +173,24 @@ module.exports = {
         ]
     },
     plugins: htmlPlugin.concat([
+        // 抽离css
         // new ExtractTextPlugin({
         //     filename:  (getPath) => {
         //     return getPath('static/css/[name].css').replace('css/js', 'css');
         //     },
         //     allChunks: true
         // }),
-         // Make sure this is after ExtractTextPlugin!需配合css抽离使用
-        // new PurifyCSSPlugin({
-        // // Give paths to parse for rules. These should be absolute!
-        // paths: glob.sync(path.join(__dirname, 'src/html/*.html')),
-        // }),
         // new webpack.ProvidePlugin({
         //     vue:"vue"
         // }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     //name对应入口文件中的名字
-        //     name:'vue',
-        //     //把文件打包到哪里，是一个路径
-        //     filename:"static/assets/js/vue.min.js",
-        //     //最小打包的文件模块数
-        //     minChunks:2
-        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            //name对应入口文件中的名字
+            name:'vue',
+            //把文件打包到哪里，是一个路径
+            filename:"static/assets/js/vue.min.js",
+            //最小打包的文件模块数
+            minChunks:2
+        }),
         new CopyWebpackPlugin([{
             from:__dirname+'/src/static/file',
             to:'./static/file'

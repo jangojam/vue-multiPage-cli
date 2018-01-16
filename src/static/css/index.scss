@@ -1,13 +1,8 @@
-  $red : blue;
+  $color : rgb(136, 133, 139);
   .head{
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    width: 18.75rem;
-    height:2.2rem;
     line-height:2.2rem;
     text-align: center;
-    background: $red;
+    background: $color;
     .tab-a{
       padding: .2rem .45rem;
       font-size: .7rem;
@@ -15,13 +10,16 @@
       border-radius: .2rem;
     }
     .active{
-      color: $red;
+      color: $color;
       background: #ffffff;
     }
     .cssimg{
-        height: 2.5rem;
-        width: 2rem;
+        height: 2rem;
+        width: 4.35rem;
         background: url(../img/web.jpg) no-repeat center center;
-        background-size: 2rem 2.5rem;
+        background-size: 4.35rem 2rem;
     }
+  }
+  .gg{
+    font-size: 1rem;
   }
