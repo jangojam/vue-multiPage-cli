@@ -26,7 +26,7 @@ function getEntry(globPath) {
         htmlPlugin.push(new HtmlWebpackPlugin({
             filename: 'html/' + name + '.html',
             template: 'src/index.html',
-            chunks: [name, 'vue'],
+            chunks: [name],
             hash: true
         }))
         console.log(filePath)
@@ -35,35 +35,33 @@ function getEntry(globPath) {
 
 
 module.exports = {
-    entry: Object.assign(getEntry('src/static/js/*.js'),{
-            vue: 'vue'
-    }),
+    entry: Object.assign(getEntry('src/static/js/*.js')),
     output:{
         path: path.resolve(__dirname, 'dist'),
         filename: 'static/js/[name].js',
-        publicPath: process.env.NODE_ENV == 'env'? 'http://'+ip.address()+':1110/': 'http://public.com/test/'
+        publicPath: process.env.NODE_ENV == 'env'? 'http://'+ip.address()+':1111/': 'http://public.com/test/'
         // chunkFilename: 'static/js/[id].js'
 
     },
     module:{
         rules: [
-            // 抽离css(如果要抽离的话)
-            // {
-            //     test: /\.css$/,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: "style-loader",
-            //         use: [{
-            //             loader: "css-loader"
-            //         },{
-            //             loader: "postcss-loader",
-            //             options: {
-            //                 plugins: [
-            //                     require('autoprefixer')()
-            //                 ]
-            //             }
-            //         }]
-            //     })
-            // },
+        //     // 抽离css(如果要抽离的话)
+        //     {
+        //         test: /\.css$/,
+        //         use: ExtractTextPlugin.extract({
+        //             fallback: "style-loader",
+        //             use: [{
+        //                 loader: "css-loader"
+        //             },{
+        //                 loader: "postcss-loader",
+        //                 options: {
+        //                     plugins: [
+        //                         require('autoprefixer')()
+        //                     ]
+        //                 }
+        //             }]
+        //         })
+        //     },
         //     {
         //         test: /\.scss$/,
         //         use: ExtractTextPlugin.extract({
@@ -122,7 +120,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10000,
+                            limit: 1000,
                             name: '[name].[hash:7].[ext]',
                             // name: '[name].[ext]',
                             outputPath: 'static/img/'
@@ -137,7 +135,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10000,
+                            limit: 1000,
                             name: '[name].[hash:7].[ext]',
                             outputPath: 'static/img/'
                         },
@@ -145,11 +143,6 @@ module.exports = {
                     
                 ]
             },
-            // // html里面img路径
-            // {
-            //     test: /\.(htm|html)$/i,
-            //      use:[ 'html-withimg-loader'] 
-            // },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -170,28 +163,28 @@ module.exports = {
         ]
     },
     plugins: htmlPlugin.concat([
-        new ExtractTextPlugin({
-            filename:  (getPath) => {
-            return getPath('static/css/[name].css').replace('css/js', 'css');
-            },
-            allChunks: true
-        }),
+        // new ExtractTextPlugin({
+        //     filename:  (getPath) => {
+        //     return getPath('static/css/[name].css').replace('css/js', 'css');
+        //     },
+        //     allChunks: true
+        // }),
          // Make sure this is after ExtractTextPlugin!需配合css抽离使用
         // new PurifyCSSPlugin({
         // // Give paths to parse for rules. These should be absolute!
         // paths: glob.sync(path.join(__dirname, 'src/html/*.html')),
         // }),
-        new webpack.ProvidePlugin({
-            Vue:"vue"
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            //name对应入口文件中的名字
-            name:'vue',
-            //把文件打包到哪里，是一个路径
-            filename:"static/assets/js/vue.min.js",
-            //最小打包的文件模块数
-            minChunks:2
-        }),
+        // new webpack.ProvidePlugin({
+        //     vue:"vue"
+        // }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     //name对应入口文件中的名字
+        //     name:'vue',
+        //     //把文件打包到哪里，是一个路径
+        //     filename:"static/assets/js/vue.min.js",
+        //     //最小打包的文件模块数
+        //     minChunks:2
+        // }),
         new CopyWebpackPlugin([{
             from:__dirname+'/src/static/file',
             to:'./static/file'

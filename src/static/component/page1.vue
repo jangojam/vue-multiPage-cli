@@ -6,7 +6,8 @@
     <button @click="add">++</button>
     <img src="../img/web.jpg" alt="">
     <div class="cssimg"></div>
-     <a href="page1.html">filefilefilefile</a>
+     <a href="index.html">filefilefilefile</a>
+     <p>我是页面11111</p>
     
   </div>
 </template>
@@ -31,4 +32,4 @@
 </script>
 
 
-<style lang="scss" src='../css/index.scss' scoped>
+<style lang="scss" src='../css/page1.scss' scoped>

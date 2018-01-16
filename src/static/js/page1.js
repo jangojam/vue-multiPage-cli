@@ -1,4 +1,5 @@
-import css from '../css/page1.scss'
-var title = document.querySelector('.content')
-title.innerHTML = '我是内容js'
-$('.main').text('我是页面1jq')
+import page1 from '../component/page1.vue'
+import Vue from 'vue'
+new Vue({
+  render: h => h(page1)
+}).$mount('#app')

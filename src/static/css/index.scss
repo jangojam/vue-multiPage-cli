@@ -1,23 +1,27 @@
-$color: yellow;
-.h-right{
-    color: $color;
-}
-.bg{
-    height: 100px;
-    width: 80px;
-    background: url(../img/bg.jpg) no-repeat center center;
-    background-size:80px 100px;
-}
-.bg1{
-    height: 100px;
-    width: 80px;
-    background: url(../img/web.jpg) no-repeat center center;
-    background-size:80px 100px;
-}
-.h-right{
-    transform: translate(0,-50px)
-}
-.fdgsf{
-    box-shadow: dodgerblue;
-    color: rebeccapurple;
-}
+  $red : blue;
+  .head{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 18.75rem;
+    height:2.2rem;
+    line-height:2.2rem;
+    text-align: center;
+    background: $red;
+    .tab-a{
+      padding: .2rem .45rem;
+      font-size: .7rem;
+      color: #ffffff;
+      border-radius: .2rem;
+    }
+    .active{
+      color: $red;
+      background: #ffffff;
+    }
+    .cssimg{
+        height: 2.5rem;
+        width: 2rem;
+        background: url(../img/web.jpg) no-repeat center center;
+        background-size: 2rem 2.5rem;
+    }
+  }

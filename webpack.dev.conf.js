@@ -10,6 +10,6 @@ module.exports = merge(baseWebpackConfig, {
         contentBase: path.resolve(__dirname , 'dist'),
         host: ip.address(),        
         compress: true,
-        port: 1110,
+        port: 1111,
     }
 })
